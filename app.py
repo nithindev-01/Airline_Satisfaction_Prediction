@@ -298,7 +298,11 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] * {
   outline: none !important;
 }
 .stApp [data-testid="stCaptionContainer"] { margin-top: -.35rem; margin-bottom: .35rem; }
-
+/* Hero title: white */
+.stApp .hero h1 {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 """
