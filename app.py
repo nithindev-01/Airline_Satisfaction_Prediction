@@ -271,10 +271,58 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] * {
   color: #E8F0FB;
 }
 
+/* -------------------------------------------------------------------------
+   Sliders: always show the lowest / highest labels (Streamlit only shows
+   them on hover or focus), keep the value readable, and tighten spacing.
+   ------------------------------------------------------------------------- */
+.stApp [data-testid="stSlider"] [data-testid="stSliderTickBarMin"],
+.stApp [data-testid="stSlider"] [data-testid="stSliderTickBarMax"],
+.stApp [data-testid="stSlider"] [data-testid="stTickBarMin"],
+.stApp [data-testid="stSlider"] [data-testid="stTickBarMax"],
+.stApp [data-testid="stSlider"] [data-testid="stSliderTickBar"],
+.stApp [data-testid="stSlider"] [data-testid="stTickBar"] {
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #53657B !important;
+  -webkit-text-fill-color: #53657B !important;
+  font-size: .8rem !important;
+}
+.stApp [data-testid="stSlider"] [data-testid="stSliderThumbValue"],
+.stApp [data-testid="stSlider"] [data-testid="stThumbValue"] {
+  color: #12263F !important;
+  -webkit-text-fill-color: #12263F !important;
+  font-weight: 700 !important;
+}
+.stApp [data-testid="stSlider"] [role="slider"]:focus-visible {
+  box-shadow: 0 0 0 4px rgba(31,111,235,.30) !important;
+  outline: none !important;
+}
+.stApp [data-testid="stCaptionContainer"] { margin-top: -.35rem; margin-bottom: .35rem; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 """
 st.markdown(THEME_CSS, unsafe_allow_html=True)
+
+
+# Sliders default to Streamlit's red accent. If no theme.primaryColor is set in
+# .streamlit/config.toml, recolour the sliders to the app's blue so the theme is
+# consistent. (When the config sets the colour, nothing is overridden.)
+try:
+    _primary_set = st.get_option("theme.primaryColor") is not None
+except Exception:
+    _primary_set = False
+if not _primary_set:
+    st.markdown(
+        """
+<style>
+.stApp [data-testid="stSlider"] [data-baseweb="slider"] {
+  filter: hue-rotate(222deg) saturate(1.15);
+}
+</style>
+""",
+        unsafe_allow_html=True,
+    )
 
 
 def html(markup: str) -> None:
@@ -486,11 +534,18 @@ with tab_predict:
         else:
             st.selectbox(label, f.get("options", ["Unknown"]), key=key)
 
+    if rating_feats:
+        _lo = int(min(float(f["min"]) for f in rating_feats))
+        _hi = int(max(float(f["max"]) for f in rating_feats))
+        rating_note = f"Rate each service from {_lo} (lowest) to {_hi} (highest)."
+    else:
+        rating_note = ""
+
     with st.form("passenger_form"):
         for title, note, group, ncols in (
             ("Passenger profile", "Who is travelling and how.", category_feats, 3),
             ("Flight details", "Distance, timing and other measurements.", number_feats, 3),
-            ("Service ratings", "Rate each service from lowest to highest.", rating_feats, 2),
+            ("Service ratings", rating_note, rating_feats, 2),
         ):
             if not group:
                 continue
