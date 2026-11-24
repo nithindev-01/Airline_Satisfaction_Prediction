@@ -1,0 +1,6 @@
+model,best_cv_roc_auc,best_params
+catboost,0.9953045863305281,"{""iterations"": 400, ""depth"": 8, ""learning_rate"": 0.08907288256130046, ""l2_leaf_reg"": 9.051875178633036, ""random_strength"": 0.03321788353530844}"
+xgboost,0.9951716446044346,"{""n_estimators"": 200, ""max_depth"": 10, ""learning_rate"": 0.12122416066301465, ""min_child_weight"": 9.455490474077703, ""subsample"": 0.9631895726496771, ""colsample_bytree"": 0.8592649925838798, ""reg_lambda"": 9.225899874801096}"
+random_forest,0.9937134560674002,"{""n_estimators"": 500, ""max_depth"": 25, ""min_samples_split"": 6, ""min_samples_leaf"": 3, ""max_features"": ""sqrt"", ""class_weight"": null}"
+decision_tree,0.9870732473896252,"{""criterion"": ""entropy"", ""max_depth"": 11, ""min_samples_split"": 19, ""min_samples_leaf"": 3, ""class_weight"": ""balanced""}"
+logistic_regression,0.9267257659379208,"{""C"": 0.04550798143438566, ""class_weight"": null}"

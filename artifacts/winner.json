@@ -1,0 +1,18 @@
+{
+  "model_name": "catboost",
+  "best_params": {
+    "iterations": 400,
+    "depth": 8,
+    "learning_rate": 0.08907288256130046,
+    "l2_leaf_reg": 9.051875178633036,
+    "random_strength": 0.03321788353530844
+  },
+  "cv_roc_auc": 0.9953045863305281,
+  "test_metrics": {
+    "accuracy": 0.9640437326763166,
+    "precision": 0.9732393092848748,
+    "recall": 0.9440498114531264,
+    "f1": 0.9584223646723646,
+    "roc_auc": 0.9955210176993213
+  }
+}

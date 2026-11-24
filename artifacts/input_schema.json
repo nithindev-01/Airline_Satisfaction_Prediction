@@ -1,0 +1,185 @@
+{
+  "features": [
+    {
+      "name": "Gender",
+      "type": "categorical",
+      "options": [
+        "Female",
+        "Male"
+      ],
+      "default": "Female"
+    },
+    {
+      "name": "Customer Type",
+      "type": "categorical",
+      "options": [
+        "Loyal Customer",
+        "disloyal Customer"
+      ],
+      "default": "Loyal Customer"
+    },
+    {
+      "name": "Age",
+      "type": "numeric",
+      "min": 7.0,
+      "max": 85.0,
+      "default": 40.0,
+      "integer": true
+    },
+    {
+      "name": "Type of Travel",
+      "type": "categorical",
+      "options": [
+        "Business travel",
+        "Personal Travel"
+      ],
+      "default": "Business travel"
+    },
+    {
+      "name": "Class",
+      "type": "categorical",
+      "options": [
+        "Business",
+        "Eco",
+        "Eco Plus"
+      ],
+      "default": "Business"
+    },
+    {
+      "name": "Flight Distance",
+      "type": "numeric",
+      "min": 31.0,
+      "max": 4983.0,
+      "default": 843.0,
+      "integer": true
+    },
+    {
+      "name": "Inflight wifi service",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Departure/Arrival time convenient",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Ease of Online booking",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Gate location",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Food and drink",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Online boarding",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Seat comfort",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "Inflight entertainment",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "On-board service",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "Leg room service",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "Baggage handling",
+      "type": "numeric",
+      "min": 1.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "Checkin service",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Inflight service",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 4.0,
+      "integer": true
+    },
+    {
+      "name": "Cleanliness",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 5.0,
+      "default": 3.0,
+      "integer": true
+    },
+    {
+      "name": "Departure Delay in Minutes",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 1592.0,
+      "default": 0.0,
+      "integer": true
+    },
+    {
+      "name": "Arrival Delay in Minutes",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 1584.0,
+      "default": 0.0,
+      "integer": false
+    }
+  ]
+}
