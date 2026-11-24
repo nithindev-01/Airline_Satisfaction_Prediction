@@ -130,35 +130,97 @@ section[data-testid="stSidebar"] [data-testid="stMetricValue"] { color: var(--am
   .pass .stub { flex-basis: auto; } .hero svg { display: none; } .hero h1 { font-size: 1.8rem; }
 }
 /* -------------------------------------------------------------------------
-   Contrast and widget polish
-   Preserve the existing layout while fixing low-contrast form text,
-   tabs, preset buttons, and the white ROC-AUC metric card.
+   Accessible Streamlit form contrast.
+   Use global Streamlit selectors (not section[data-testid="stMain"]),
+   because Streamlit versions differ in their main-section DOM wrappers.
    ------------------------------------------------------------------------- */
 
-/* Main page labels and form controls */
-section[data-testid="stMain"] [data-testid="stWidgetLabel"],
-section[data-testid="stMain"] [data-testid="stWidgetLabel"] *,
-section[data-testid="stMain"] [data-testid="stSlider"] label,
-section[data-testid="stMain"] [data-testid="stSlider"] label *,
-section[data-testid="stMain"] [data-testid="stSelectbox"] label,
-section[data-testid="stMain"] [data-testid="stNumberInput"] label,
-section[data-testid="stMain"] [data-testid="stTextInput"] label {
+/* All widget labels: slider, number input, selectbox, text input, etc. */
+.stApp [data-testid="stWidgetLabel"],
+.stApp [data-testid="stWidgetLabel"] *,
+.stApp [data-testid="stWidgetLabel"] p,
+.stApp [data-testid="stSlider"] label,
+.stApp [data-testid="stSlider"] label *,
+.stApp [data-testid="stNumberInput"] label,
+.stApp [data-testid="stNumberInput"] label *,
+.stApp [data-testid="stSelectbox"] label,
+.stApp [data-testid="stSelectbox"] label *,
+.stApp [data-testid="stTextInput"] label,
+.stApp [data-testid="stTextInput"] label * {
+  color: #19324F !important;
+  -webkit-text-fill-color: #19324F !important;
+  opacity: 1 !important;
+}
+
+/* Streamlit sometimes places the visible label in Markdown containers. */
+.stApp [data-testid="stWidgetLabel"] [data-testid="stMarkdownContainer"],
+.stApp [data-testid="stWidgetLabel"] [data-testid="stMarkdownContainer"] *,
+.stApp [data-testid="stSlider"] [data-testid="stMarkdownContainer"],
+.stApp [data-testid="stSlider"] [data-testid="stMarkdownContainer"] * {
+  color: #19324F !important;
+  -webkit-text-fill-color: #19324F !important;
+  opacity: 1 !important;
+}
+
+/* Captions, section descriptions, and slider endpoint labels. */
+.stApp [data-testid="stCaptionContainer"],
+.stApp [data-testid="stCaptionContainer"] *,
+.stApp [data-testid="stSlider"] small,
+.stApp [data-testid="stSlider"] small * {
+  color: #53657B !important;
+  -webkit-text-fill-color: #53657B !important;
+  opacity: 1 !important;
+}
+
+/* Help / tooltip icons. */
+.stApp [data-testid="stTooltipIcon"],
+.stApp [data-testid="stTooltipIcon"] *,
+.stApp [data-testid="stTooltipIcon"] svg {
+  color: #53657B !important;
+  fill: #53657B !important;
+  opacity: 1 !important;
+}
+
+/* Light input surfaces with readable dark values. */
+.stApp [data-baseweb="input"],
+.stApp [data-baseweb="base-input"],
+.stApp [data-baseweb="select"] > div,
+.stApp [data-testid="stNumberInput"] [data-baseweb="input"] > div {
+  background-color: #FFFFFF !important;
+  border-color: #C9D5E3 !important;
+}
+
+.stApp input,
+.stApp textarea,
+.stApp [data-baseweb="select"] input,
+.stApp [data-baseweb="select"] div,
+.stApp [data-baseweb="input"] * {
   color: #19324F !important;
   -webkit-text-fill-color: #19324F !important;
 }
 
-/* Slider min/max captions and values */
-section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownContainer"],
-section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownContainer"] * {
-  color: #53657B !important;
-  -webkit-text-fill-color: #53657B !important;
+/* Selectbox selected value and dropdown text. */
+.stApp [data-baseweb="select"] *,
+.stApp [role="listbox"] *,
+.stApp [role="option"] {
+  color: #19324F !important;
+  -webkit-text-fill-color: #19324F !important;
 }
 
-/* Tabs: readable inactive and active labels */
+/* Main content headings. */
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp h4 {
+  color: #12263F;
+}
+
+/* Tabs: readable inactive and active labels. */
 .stTabs [role="tab"],
 .stTabs [role="tab"] * {
   color: #53657B !important;
   -webkit-text-fill-color: #53657B !important;
+  opacity: 1 !important;
 }
 .stTabs [role="tab"][aria-selected="true"],
 .stTabs [role="tab"][aria-selected="true"] * {
@@ -166,25 +228,22 @@ section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownC
   -webkit-text-fill-color: #1F6FEB !important;
 }
 
-/* Preset buttons: light background with dark readable text */
+/* Preset buttons: light surface and dark text. */
 .stButton > button:not([kind="primary"]) {
   background: #FFFFFF !important;
   color: #19324F !important;
   border: 1px solid #C9D5E3 !important;
 }
-.stButton > button:not([kind="primary"]):hover {
-  background: #EAF2FF !important;
-  color: #12263F !important;
-  border-color: #1F6FEB !important;
-}
-.stButton > button:not([kind="primary"]) *,
-.stDownloadButton > button,
-.stDownloadButton > button * {
+.stButton > button:not([kind="primary"]) * {
   color: #19324F !important;
   -webkit-text-fill-color: #19324F !important;
 }
+.stButton > button:not([kind="primary"]):hover {
+  background: #EAF2FF !important;
+  border-color: #1F6FEB !important;
+}
 
-/* Keep the primary prediction button prominent */
+/* Preserve the primary prediction button's white-on-blue treatment. */
 .stFormSubmitButton > button[kind="primary"],
 .stFormSubmitButton > button[kind="primary"] * {
   background: linear-gradient(90deg, #1F6FEB, #3B8BFF) !important;
@@ -192,7 +251,7 @@ section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownC
   -webkit-text-fill-color: #FFFFFF !important;
 }
 
-/* White ROC-AUC card: override the general white-text sidebar rule */
+/* White ROC-AUC card in the dark sidebar. */
 section[data-testid="stSidebar"] div[data-testid="stMetric"],
 section[data-testid="stSidebar"] div[data-testid="stMetric"] *,
 section[data-testid="stSidebar"] div[data-testid="stMetric"] label {
@@ -205,69 +264,11 @@ section[data-testid="stSidebar"] div[data-testid="stMetric"] {
   border-radius: 16px !important;
 }
 
-/* Help icons remain visible on the light form background */
-section[data-testid="stMain"] [data-testid="stTooltipIcon"] {
-  color: #53657B !important;
-}
-
-/* -------------------------------------------------------------------------
-   Strong Streamlit widget contrast overrides.
-   Streamlit/BaseWeb labels are not always nested under stWidgetLabel, so
-   target the actual widget containers as well. Layout and widget positions
-   are intentionally unchanged.
-   ------------------------------------------------------------------------- */
-section[data-testid="stMain"] label,
-section[data-testid="stMain"] label *,
-section[data-testid="stMain"] [data-testid="stWidgetLabel"],
-section[data-testid="stMain"] [data-testid="stWidgetLabel"] *,
-section[data-testid="stMain"] .stSlider p,
-section[data-testid="stMain"] .stSlider span,
-section[data-testid="stMain"] [data-testid="stSlider"] p,
-section[data-testid="stMain"] [data-testid="stSlider"] span {
-  color: #19324F !important;
-  -webkit-text-fill-color: #19324F !important;
-  opacity: 1 !important;
-}
-
-/* Supporting descriptions and slider endpoints */
-section[data-testid="stMain"] [data-testid="stCaptionContainer"],
-section[data-testid="stMain"] [data-testid="stCaptionContainer"] *,
-section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownContainer"],
-section[data-testid="stMain"] [data-testid="stSlider"] [data-testid="stMarkdownContainer"] * {
-  color: #53657B !important;
-  -webkit-text-fill-color: #53657B !important;
-  opacity: 1 !important;
-}
-
-/* Help / tooltip icons */
-section[data-testid="stMain"] [data-testid="stTooltipIcon"],
-section[data-testid="stMain"] [data-testid="stTooltipIcon"] *,
-section[data-testid="stMain"] [data-testid="stTooltipIcon"] svg {
-  color: #53657B !important;
-  fill: #53657B !important;
-  opacity: 1 !important;
-}
-
-/* Consistent light input surfaces and dark entered values */
-section[data-testid="stMain"] [data-baseweb="input"],
-section[data-testid="stMain"] [data-baseweb="base-input"],
-section[data-testid="stMain"] [data-baseweb="select"] > div {
-  background-color: #FFFFFF !important;
-  border-color: #C9D5E3 !important;
-}
-section[data-testid="stMain"] input,
-section[data-testid="stMain"] [data-baseweb="select"] input,
-section[data-testid="stMain"] [data-baseweb="select"] div {
-  color: #19324F !important;
-  -webkit-text-fill-color: #19324F !important;
-}
-
-/* Main section headings stay dark and clear */
-section[data-testid="stMain"] h1,
-section[data-testid="stMain"] h2,
-section[data-testid="stMain"] h3,
-section[data-testid="stMain"] h4 {
-  color: #12263F !important;
+/* Restore light text for sidebar content outside the white metric card. */
+section[data-testid="stSidebar"] > div,
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] * {
+  color: #E8F0FB;
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
